@@ -1,5 +1,6 @@
 #http://rosalind.info/problems/ba10a/
 #https://github.com/taejoonlab/BME203.2019/tree/master/HMM
+#Python
 
 def foo():
   sample_data_list = """  
