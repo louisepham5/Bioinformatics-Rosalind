@@ -1,0 +1,41 @@
+#http://rosalind.info/problems/ba10a/
+#https://github.com/taejoonlab/BME203.2019/tree/master/HMM
+
+def foo():
+  sample_data_list = """  
+  AABBBAABABAAAABBBBAABBABABBBAABBAAAABABAABBABABBAB
+  --------
+  A   B
+  --------
+      A   B
+  A   0.194   0.806
+  B   0.273   0.727
+  """.strip().split("\n")
+
+  status_path = sample_data_list[0]
+  status_list = sample_data_list[2].strip().split()
+
+  transit_list = dict()
+  status_header = sample_data_list[4].strip().split()
+  #print(status_header)
+  for tmp_line in sample_data_list[5:]:
+    tmp_tokens = tmp_line.strip().split()
+    for tmp_i in range(1,len(tmp_tokens)):
+      transit_code = '%s%s' % (tmp_tokens[0], status_header[tmp_i-1])
+      #print(transit_code)
+      transit_list[transit_code] = float(tmp_tokens[tmp_i])
+
+  status_path[1]+status_path[2]
+  probability = 0.5
+  for i in range(0,(len(status_path)-1)):
+    if status_path[i]+status_path[i+1] == 'AA':
+      probability = (probability*0.194)
+    elif status_path[i]+status_path[i+1] == 'AB':
+      probability = (probability*0.806)
+    elif status_path[i]+status_path[i+1] == 'BA':
+      probability = probability*0.273
+    elif status_path[i]+status_path[i+1] == 'BB':
+      probability = probability*0.727    
+  return probability
+foo()
+# Answer is 5.017328653175628e-19
